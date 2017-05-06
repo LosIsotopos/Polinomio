@@ -2,6 +2,7 @@ package polinom;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Polinomio {
@@ -13,6 +14,7 @@ public class Polinomio {
 
 	public Polinomio(String path) throws FileNotFoundException {
 		Scanner sc = new Scanner(new File(path));
+		sc.useLocale(Locale.ENGLISH);
 		this.grado = sc.nextInt();
 		this.coeficientes = new double[grado+1];
 		for (int i = 0; i < coeficientes.length; i++) {
