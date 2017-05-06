@@ -10,7 +10,7 @@ public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		String path = "grado";
-		String grado = "300";
+		String grado = "3";
 		int x = 2;
 		Polinomio p1 = new Polinomio(path+ grado +".in");
 //		p1.mostrar();
