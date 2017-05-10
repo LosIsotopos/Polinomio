@@ -10,7 +10,7 @@ public class Polinomio {
 	private double [ ] coeficientes;
 	
 	//coeficiente [0] maxima potencia
-	//coeficiente[grado-1] termino independiente
+	//coeficiente[grado] termino independiente
 
 	public Polinomio(String path) throws FileNotFoundException {
 		Scanner sc = new Scanner(new File(path));
@@ -93,16 +93,39 @@ public class Polinomio {
 	}
 	
 	public double evaluarProgDinamica (double x) {
-		
-		return x;
+		double [] vec = new double [coeficientes.length];
+		double resultado = 0;
+		vec[grado] = 1;
+		for (int i = grado-1; i >= 0; i--) {
+			vec[i] = vec[i+1] * x;
+		}
+		for (int j = 0; j < vec.length; j++) {
+			resultado += coeficientes[j] * vec[j];
+		}
+		return resultado;
 	}
-
+	//?????????????????????
+	//?????????????????????
+	//?????????????????????
 	public double evaluarMejorada(double x) {
-		return x;	
+		double var = 1;
+		double resultado = 0;
+		for (int j = 0; j < coeficientes.length; j++) {
+			resultado += coeficientes[coeficientes.length-j-1] * var;
+			var *= x;
+		}
+		return resultado;	
 	}
+	//?????????????????????
+	//?????????????????????
+	//?????????????????????
 
 	public double evaluarPow (double x) {
-		return x;
+		double resultado = 0;
+		for (int i = 0; i < coeficientes.length; i++) {
+			resultado += this.coeficientes[i] * Math.pow(x, grado - i);
+		}
+		return resultado;
 	}
 
 
