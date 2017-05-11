@@ -1,14 +1,12 @@
 package polinom;
 
 import java.io.FileNotFoundException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		String path = "grado";
-		String grado = "1000";
+		String grado = "300";
 		double x = 1.14535;
 		Polinomio p1 = new Polinomio(path+ grado +".in");
 		long tIniResol;
@@ -16,39 +14,82 @@ public class Main {
 		long diff;
 		long tot = 0;
 //		p1.mostrar();
-		
-//		Cronometro crono = new Cronometro(Precision.MICROSEGUNDOS);
-//		crono.clic(); 
-		//Empieza a correr el cronometro
-		
 //		System.out.println(p1.evaluarMSucesivas(x));
-//		crono.clic();
 //		System.out.println(p1.evaluarRecursiva(x));
-//		crono.clic();
 //		System.out.println(p1.evaluarRecursivaPar(x));
-//		crono.clic();
+//		System.out.println(p1.evaluarProgDinamica(x));
+//		System.out.println(p1.evaluarMejorada(x));
+//		System.out.println(p1.evaluarPow(x));
+//		System.out.println(p1.evaluarHorner(x));
 		for (int i = 0; i < 1000; i++) {
 			tIniResol = System.nanoTime();
-			System.out.println(p1.evaluarProgDinamica(x));
-			System.out.println(p1.evaluarMejorada(x));
+			p1.evaluarMSucesivas(x);
 			tFinResol = System.nanoTime();
 			diff = tFinResol - tIniResol;
 			tot += diff;
-//			x+=0.001;
+		}
+		tot/=1000;
+		System.out.println("Tiempo Prom de MSucesivas() = " + tot/1000 + " microsegs");
+		
+		for (int i = 0; i < 1000; i++) {
+			tIniResol = System.nanoTime();
+			p1.evaluarRecursiva(x);
+			tFinResol = System.nanoTime();
+			diff = tFinResol - tIniResol;
+			tot += diff;
+		}
+		tot/=1000;
+		System.out.println("Tiempo Prom de Recursiva() = " + tot/1000 + " microsegs");
+		
+		for (int i = 0; i < 1000; i++) {
+			tIniResol = System.nanoTime();
+			p1.evaluarRecursivaPar(x);
+			tFinResol = System.nanoTime();
+			diff = tFinResol - tIniResol;
+			tot += diff;
+		}
+		tot/=1000;
+		System.out.println("Tiempo Prom de RecursivaPar() = " + tot/1000 + " microsegs");
+		
+		for (int i = 0; i < 1000; i++) {
+			tIniResol = System.nanoTime();;
+			p1.evaluarProgDinamica(x);
+			tFinResol = System.nanoTime();
+			diff = tFinResol - tIniResol;
+			tot += diff;
 		}
 		tot/=1000;
 		System.out.println("Tiempo Prom de ProgDinamica() = " + tot/1000 + " microsegs");
-//		crono.clic();
-//		System.out.println(p1.evaluarMejorada(x));
-//		crono.clic();
-//		System.out.println(p1.evaluarPow(x));
-//		crono.clic();
-//		System.out.println(p1.evaluarHorner(x));
-//		crono.clic();
 		
-//		System.out.println("Detalles");
-//		PresentadorDeTiempos detalles = new PresentadorDeTiemposDetallado(crono.getMediciones());
-//		System.out.println(detalles.toString());
+		for (int i = 0; i < 1000; i++) {
+			tIniResol = System.nanoTime();
+			p1.evaluarMejorada(x);
+			tFinResol = System.nanoTime();
+			diff = tFinResol - tIniResol;
+			tot += diff;
+		}
+		tot/=1000;
+		System.out.println("Tiempo Prom de Mejorada() = " + tot/1000 + " microsegs");
+		
+		for (int i = 0; i < 1000; i++) {
+			tIniResol = System.nanoTime();
+			p1.evaluarPow(x);
+			tFinResol = System.nanoTime();
+			diff = tFinResol - tIniResol;
+			tot += diff;
+		}
+		tot/=1000;
+		System.out.println("Tiempo Prom de Pow() = " + tot/1000 + " microsegs");
+		
+		for (int i = 0; i < 1000; i++) {
+			tIniResol = System.nanoTime();
+			p1.evaluarHorner(x);
+			tFinResol = System.nanoTime();
+			diff = tFinResol - tIniResol;
+			tot += diff;
+		}
+		tot/=1000;
+		System.out.println("Tiempo Prom de Horner() = " + tot/1000 + " microsegs");
 	}
 
 }
